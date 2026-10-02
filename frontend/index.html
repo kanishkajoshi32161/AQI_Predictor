@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroSense AI – Smart Air Quality Predictor | ML Exhibition</title>
+  <meta name="description" content="Production-quality Machine Learning Air Quality Index (AQI) predictor using Random Forest, Decision Tree, and Linear Regression models with real-time environmental meteorology.">
+  <meta name="theme-color" content="#070a13">
+
+  <!-- Google Fonts: Outfit & Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js for Interactive Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Application Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+  <!-- Ambient Particle Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- Main App Shell -->
+  <div class="app-container">
+    
+    <!-- Top Navigation Header -->
+    <header class="app-header glass-card">
+      <div class="header-left">
+        <div class="brand-logo">
+          <div class="logo-icon-wrapper">
+            <i class="fa-solid fa-wind"></i>
+            <span class="logo-pulse"></span>
+          </div>
+          <div class="logo-text">
+            <span class="brand-title">AeroSense<span class="highlight">AI</span></span>
+            <span class="brand-subtitle">Smart Air Quality Prediction</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <a href="#dashboard" class="nav-link active" id="nav-dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="#simulator" class="nav-link" id="nav-simulator"><i class="fa-solid fa-sliders"></i> ML Sandbox</a>
+        <a href="#analytics" class="nav-link" id="nav-analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        <a href="#models" class="nav-link" id="nav-models"><i class="fa-solid fa-brain"></i> Model Benchmark</a>
+        <a href="#pipeline" class="nav-link" id="nav-pipeline"><i class="fa-solid fa-diagram-project"></i> ML Pipeline</a>
+        <a href="#about" class="nav-link" id="nav-about"><i class="fa-solid fa-circle-info"></i> About</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="status-badge" id="system-status-badge">
+          <span class="status-dot"></span>
+          <span class="status-text">ML Models Online</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- HERO & SEARCH SECTION -->
+      <section class="hero-section" id="hero">
+        <div class="hero-badge">
+          <i class="fa-solid fa-atom"></i> Individual Machine Learning Project • Exhibition 2026
+        </div>
+        <h1 class="hero-title">Know Your Air Before You Breathe It.</h1>
+        <p class="hero-subtitle">
+          AeroSense AI leverages supervised regression algorithms (Random Forest, Decision Trees, and Linear Baselines) trained on atmospheric meteorology to estimate hyper-accurate Air Quality Indices in real-time.
+        </p>
+
+        <!-- Search Bar Card -->
+        <div class="search-container glass-card">
+          <div class="search-input-group">
+            <i class="fa-solid fa-location-dot search-icon"></i>
+            <input 
+              type="text" 
+              id="city-search-input" 
+              class="city-search-input" 
+              placeholder="Enter city name (e.g. Delhi, London, Tokyo, New York, Mumbai)..." 
+              autocomplete="off"
+              value="Delhi"
+            >
+            <button class="geo-btn" id="btn-geolocation" title="Use current GPS location">
+              <i class="fa-solid fa-crosshairs"></i>
+            </button>
+          </div>
+          <button class="btn btn-primary" id="btn-predict">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Predict AQI</span>
+          </button>
+        </div>
+
+        <!-- Quick City Chips -->
+        <div class="quick-cities-container">
+          <span class="quick-label"><i class="fa-solid fa-fire-flame-curved"></i> Quick Select:</span>
+          <div class="city-chips" id="city-chips">
+            <button class="chip active" data-city="Delhi">Delhi, IN</button>
+            <button class="chip" data-city="Mumbai">Mumbai, IN</button>
+            <button class="chip" data-city="Bengaluru">Bengaluru, IN</button>
+            <button class="chip" data-city="London">London, UK</button>
+            <button class="chip" data-city="New York">New York, US</button>
+            <button class="chip" data-city="Tokyo">Tokyo, JP</button>
+            <button class="chip" data-city="Paris">Paris, FR</button>
+            <button class="chip" data-city="Beijing">Beijing, CN</button>
+            <button class="chip" data-city="Dubai">Dubai, AE</button>
+            <button class="chip" data-city="Sydney">Sydney, AU</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD & PREDICTION RESULTS -->
+      <section class="dashboard-section" id="dashboard">
+        
+        <!-- Location & Status Banner -->
+        <div class="location-banner glass-card">
+          <div class="location-info">
+            <div class="loc-pin"><i class="fa-solid fa-earth-americas"></i></div>
+            <div>
+              <h2 class="location-name" id="display-location">Delhi, India</h2>
+              <p class="location-meta" id="display-coords">Lat: 28.61° N, Lon: 77.21° E • <span id="data-source-tag" class="source-tag">Live Sensor Feed</span></p>
+            </div>
+          </div>
+          <div class="location-actions">
+            <div class="selected-model-pill" id="active-model-pill">
+              <i class="fa-solid fa-award"></i> Active Model: <span class="model-name-highlight" id="active-model-name">Random Forest</span> (R²: 0.940)
+            </div>
+            <div class="last-updated" id="display-timestamp">Updated: Just now</div>
+          </div>
+        </div>
+
+        <!-- Main Grid: Gauge on Left, Environmental Metrics on Right -->
+        <div class="prediction-grid">
+          
+          <!-- LEFT: Circular Gauge & ML Prediction Card -->
+          <div class="gauge-card glass-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <i class="fa-solid fa-chart-pie card-icon"></i>
+                <h3 class="card-title">Machine Learning AQI Estimate</h3>
+              </div>
+              <span class="badge badge-ml" id="ml-badge">Supervised ML</span>
+            </div>
+
+            <!-- Circular SVG Gauge -->
+            <div class="gauge-wrapper">
+              <div class="svg-gauge-container">
+                <svg viewBox="0 0 240 240" class="gauge-svg" id="gauge-svg">
+                  <!-- Background Track Arc -->
+                  <circle cx="120" cy="120" r="92" class="gauge-track"></circle>
+                  <!-- Value Fill Arc -->
+                  <circle cx="120" cy="120" r="92" class="gauge-fill" id="gauge-fill-circle"></circle>
+                </svg>
+                
+                <!-- Center Info -->
+                <div class="gauge-center-content">
+                  <span class="gauge-label">PREDICTED AQI</span>
+                  <div class="gauge-value-number" id="gauge-value">0</div>
+                  <div class="gauge-category-badge" id="gauge-category">Calculating...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Health Impact & Advisory Box -->
+            <div class="health-impact-box" id="health-box">
+              <div class="health-header">
+                <i class="fa-solid fa-shield-heart" id="health-icon"></i>
+                <h4 id="health-title">Health Statement</h4>
+              </div>
+              <p class="health-desc" id="health-description">Analyzing particulate concentration and air quality safety level...</p>
+              
+              <div class="advisory-list" id="advisory-list">
+                <!-- Dynamically populated advisories -->
+              </div>
+            </div>
+
+            <!-- Model Switcher Tabs inside Gauge Card -->
+            <div class="model-switcher-container">
+              <span class="switcher-label"><i class="fa-solid fa-code-compare"></i> Compare Model Outputs:</span>
+              <div class="model-pills" id="model-pills">
+                <button class="model-pill active" data-model="random_forest" id="pill-rf">
+                  <span class="pill-name">Random Forest</span>
+                  <span class="pill-score">R² 0.940</span>
+                </button>
+                <button class="model-pill" data-model="decision_tree" id="pill-dt">
+                  <span class="pill-name">Decision Tree</span>
+                  <span class="pill-score">R² 0.927</span>
+                </button>
+                <button class="model-pill" data-model="linear_regression" id="pill-lr">
+                  <span class="pill-name">Linear Reg</span>
+                  <span class="pill-score">R² 0.313</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Live Environmental Features & Official Comparison -->
+          <div class="env-metrics-column">
+            
+            <!-- Live Sensor vs ML Model Dual Card -->
+            <div class="dual-metric-card glass-card">
+              <div class="dual-header">
+                <div>
+                  <h3 class="card-title"><i class="fa-solid fa-satellite-dish"></i> Live Ground Observation vs ML Prediction</h3>
+                  <p class="card-subtitle">Real-time comparison between measured ground station AQI and ML inferred value</p>
+                </div>
+              </div>
+
+              <div class="dual-comparison-row">
+                <div class="dual-box live-box">
+                  <div class="box-tag"><i class="fa-solid fa-tower-broadcast"></i> Live Official Station</div>
+                  <div class="box-value" id="live-official-aqi">--</div>
+                  <div class="box-sub" id="live-official-category">US EPA Scale</div>
+                </div>
+
+                <div class="dual-delta-indicator" id="dual-delta-box">
+                  <div class="delta-arrow" id="delta-arrow"><i class="fa-solid fa-arrows-left-right"></i></div>
+                  <div class="delta-label">Model Delta</div>
+                  <div class="delta-num" id="delta-value">0%</div>
+                </div>
+
+                <div class="dual-box ml-box">
+                  <div class="box-tag"><i class="fa-solid fa-brain"></i> AeroSense Model</div>
+                  <div class="box-value" id="ml-predicted-aqi">--</div>
+                  <div class="box-sub" id="ml-predicted-category">Random Forest</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Environmental Parameters Grid (Inputs to ML) -->
+            <div class="env-grid-card glass-card">
+              <div class="card-header">
+                <div class="card-title-group">
+                  <i class="fa-solid fa-cloud-sun-rain card-icon"></i>
+                  <h3 class="card-title">Environmental Input Features</h3>
+                </div>
+                <span class="badge badge-tech">Meteorological Vector</span>
+              </div>
+
+              <div class="env-params-grid">
+                <!-- Temperature -->
+                <div class="env-param-item">
+                  <div class="param-icon temp-icon"><i class="fa-solid fa-temperature-half"></i></div>
+                  <div class="param-data">
+                    <span class="param-name">Temperature</span>
+                    <span class="param-val" id="env-temp">-- °C</span>
+                    <span class="param-hint">Thermal Inversion Factor</span>
+                  </div>
+                </div>
+
+                <!-- Humidity -->
+                <div class="env-param-item">
+                  <div class="param-icon hum-icon"><i class="fa-solid fa-droplet"></i></div>
+                  <div class="param-data">
+                    <span class="param-name">Relative Humidity</span>
+                    <span class="param-val" id="env-humidity">-- %</span>
+                    <span class="param-hint">Hygroscopic Aerosol Growth</span>
+                  </div>
+                </div>
+
+                <!-- Hour -->
+                <div class="env-param-item">
+                  <div class="param-icon hour-icon"><i class="fa-solid fa-clock"></i></div>
+                  <div class="param-data">
+                    <span class="param-name">Hour of Day</span>
+                    <span class="param-val" id="env-hour">--:00</span>
+                    <span class="param-hint">Diurnal Traffic Peak</span>
+                  </div>
+                </div>
+
+                <!-- Month -->
+                <div class="env-param-item">
+                  <div class="param-icon month-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                  <div class="param-data">
+                    <span class="param-name">Month of Year</span>
+                    <span class="param-val" id="env-month">--</span>
+                    <span class="param-hint">Seasonal Boundary Trapping</span>
+                  </div>
+                </div>
+
+                <!-- Wind Speed -->
+                <div class="env-param-item">
+                  <div class="param-icon wind-icon"><i class="fa-solid fa-wind"></i></div>
+                  <div class="param-data">
+                    <span class="param-name">Wind Speed</span>
+                    <span class="param-val" id="env-wind">-- km/h</span>
+                    <span class="param-hint">Atmospheric Dispersion</span>
+                  </div>
+                </div>
+
+                <!-- Surface Pressure -->
+                <div class="env-param-item">
+                  <div class="param-icon press-icon"><i class="fa-solid fa-gauge"></i></div>
+                  <div class="param-data">
+                    <span class="param-name">Pressure</span>
+                    <span class="param-val" id="env-pressure">-- hPa</span>
+                    <span class="param-hint">Air Mass Compression</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pollutants Breakdown Grid -->
+            <div class="pollutants-card glass-card">
+              <div class="card-header">
+                <div class="card-title-group">
+                  <i class="fa-solid fa-smog card-icon"></i>
+                  <h3 class="card-title">Live & Inferred Chemical Pollutants</h3>
+                </div>
+                <span class="badge badge-live">Multi-Gas Sensor Suite</span>
+              </div>
+
+              <div class="pollutant-cards-container">
+                <div class="pollutant-card" id="pol-pm25">
+                  <div class="pol-top">
+                    <span class="pol-name">PM2.5</span>
+                    <span class="pol-status normal">Normal</span>
+                  </div>
+                  <div class="pol-num"><span id="val-pm25">--</span> <span class="pol-unit">µg/m³</span></div>
+                  <div class="pol-bar-wrap"><div class="pol-bar-fill" id="bar-pm25" style="width: 30%;"></div></div>
+                </div>
+
+                <div class="pollutant-card" id="pol-pm10">
+                  <div class="pol-top">
+                    <span class="pol-name">PM10</span>
+                    <span class="pol-status normal">Normal</span>
+                  </div>
+                  <div class="pol-num"><span id="val-pm10">--</span> <span class="pol-unit">µg/m³</span></div>
+                  <div class="pol-bar-wrap"><div class="pol-bar-fill" id="bar-pm10" style="width: 40%;"></div></div>
+                </div>
+
+                <div class="pollutant-card" id="pol-no2">
+                  <div class="pol-top">
+                    <span class="pol-name">NO₂</span>
+                    <span class="pol-status normal">Normal</span>
+                  </div>
+                  <div class="pol-num"><span id="val-no2">--</span> <span class="pol-unit">µg/m³</span></div>
+                  <div class="pol-bar-wrap"><div class="pol-bar-fill" id="bar-no2" style="width: 25%;"></div></div>
+                </div>
+
+                <div class="pollutant-card" id="pol-o3">
+                  <div class="pol-top">
+                    <span class="pol-name">O₃ (Ozone)</span>
+                    <span class="pol-status normal">Normal</span>
+                  </div>
+                  <div class="pol-num"><span id="val-o3">--</span> <span class="pol-unit">µg/m³</span></div>
+                  <div class="pol-bar-wrap"><div class="pol-bar-fill" id="bar-o3" style="width: 35%;"></div></div>
+                </div>
+
+                <div class="pollutant-card" id="pol-so2">
+                  <div class="pol-top">
+                    <span class="pol-name">SO₂</span>
+                    <span class="pol-status normal">Normal</span>
+                  </div>
+                  <div class="pol-num"><span id="val-so2">--</span> <span class="pol-unit">µg/m³</span></div>
+                  <div class="pol-bar-wrap"><div class="pol-bar-fill" id="bar-so2" style="width: 15%;"></div></div>
+                </div>
+
+                <div class="pollutant-card" id="pol-co">
+                  <div class="pol-top">
+                    <span class="pol-name">CO</span>
+                    <span class="pol-status normal">Normal</span>
+                  </div>
+                  <div class="pol-num"><span id="val-co">--</span> <span class="pol-unit">mg/m³</span></div>
+                  <div class="pol-bar-wrap"><div class="pol-bar-fill" id="bar-co" style="width: 20%;"></div></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE "WHAT-IF" ML SIMULATOR (EXHIBITION SANDBOX) -->
+      <section class="simulator-section" id="simulator">
+        <div class="section-header-center">
+          <div class="hero-badge"><i class="fa-solid fa-sliders"></i> Interactive ML Demonstration</div>
+          <h2 class="section-title">"What-If" Environmental Sandbox Simulator</h2>
+          <p class="section-subtitle">
+            Slide the environmental dials below to test how different meteorological conditions, seasons, and rush hours dynamically alter the AQI prediction across all 3 Machine Learning algorithms.
+          </p>
+        </div>
+
+        <div class="sandbox-container glass-card">
+          <!-- Preset Scenarios -->
+          <div class="presets-row">
+            <span class="presets-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Load Preset Scenarios:</span>
+            <div class="preset-buttons">
+              <button class="btn btn-preset" data-preset="winter_inversion"><i class="fa-solid fa-snowflake"></i> Winter Smog Inversion</button>
+              <button class="btn btn-preset" data-preset="summer_heat"><i class="fa-solid fa-sun"></i> Summer Ozone High</button>
+              <button class="btn btn-preset" data-preset="monsoon_rain"><i class="fa-solid fa-cloud-showers-heavy"></i> Monsoon Clean Air</button>
+              <button class="btn btn-preset" data-preset="rush_hour"><i class="fa-solid fa-car-side"></i> Evening Rush Hour</button>
+              <button class="btn btn-preset" data-preset="clean_coastal"><i class="fa-solid fa-wind"></i> High Wind Dispersion</button>
+            </div>
+          </div>
+
+          <div class="sandbox-grid">
+            <!-- Sliders Panel -->
+            <div class="sliders-panel">
+              
+              <!-- Temperature Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="sim-temp"><i class="fa-solid fa-temperature-half"></i> Temperature (°C)</label>
+                  <span class="slider-value-display" id="sim-temp-display">25.0 °C</span>
+                </div>
+                <input type="range" id="sim-temp" min="-5" max="48" step="0.5" value="25">
+                <div class="slider-scale"><span>-5°C (Freezing)</span><span>22°C (Mild)</span><span>48°C (Extreme Heat)</span></div>
+              </div>
+
+              <!-- Humidity Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="sim-humidity"><i class="fa-solid fa-droplet"></i> Relative Humidity (%)</label>
+                  <span class="slider-value-display" id="sim-humidity-display">55 %</span>
+                </div>
+                <input type="range" id="sim-humidity" min="15" max="98" step="1" value="55">
+                <div class="slider-scale"><span>15% (Arid)</span><span>50% (Comfortable)</span><span>98% (Dense Fog/Mists)</span></div>
+              </div>
+
+              <!-- Hour Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="sim-hour"><i class="fa-solid fa-clock"></i> Hour of the Day (0-23)</label>
+                  <span class="slider-value-display" id="sim-hour-display">14:00 (2 PM)</span>
+                </div>
+                <input type="range" id="sim-hour" min="0" max="23" step="1" value="14">
+                <div class="slider-scale"><span>00:00 (Midnight)</span><span>08:00 (Morning Rush)</span><span>20:00 (Evening Rush)</span></div>
+              </div>
+
+              <!-- Month Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="sim-month"><i class="fa-solid fa-calendar-days"></i> Month of the Year</label>
+                  <span class="slider-value-display" id="sim-month-display">July (Month 7)</span>
+                </div>
+                <input type="range" id="sim-month" min="1" max="12" step="1" value="7">
+                <div class="slider-scale"><span>Jan (Winter)</span><span>Jul (Monsoon)</span><span>Nov-Dec (Severe Inversion)</span></div>
+              </div>
+
+              <!-- Wind Speed Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="sim-wind"><i class="fa-solid fa-wind"></i> Wind Speed (km/h)</label>
+                  <span class="slider-value-display" id="sim-wind-display">12.0 km/h</span>
+                </div>
+                <input type="range" id="sim-wind" min="1" max="45" step="0.5" value="12">
+                <div class="slider-scale"><span>1 km/h (Dead Calm Stagnation)</span><span>15 km/h (Breeze)</span><span>45 km/h (Gale)</span></div>
+              </div>
+
+              <!-- Pressure Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="sim-pressure"><i class="fa-solid fa-gauge"></i> Atmospheric Pressure (hPa)</label>
+                  <span class="slider-value-display" id="sim-pressure-display">1013 hPa</span>
+                </div>
+                <input type="range" id="sim-pressure" min="990" max="1035" step="1" value="1013">
+                <div class="slider-scale"><span>990 hPa (Low Pressure Cyclone)</span><span>1013.25 (Standard)</span><span>1035 hPa (High Pressure)</span></div>
+              </div>
+
+            </div>
+
+            <!-- Real-time Multi-Model Reaction Board -->
+            <div class="sim-results-panel">
+              <div class="sim-reaction-header">
+                <h3><i class="fa-solid fa-microchip"></i> Live Model Inferences</h3>
+                <span class="sim-latency"><i class="fa-solid fa-bolt"></i> &lt;1ms In-Engine</span>
+              </div>
+
+              <!-- 3 Model Cards -->
+              <div class="sim-models-stack">
+                
+                <!-- Random Forest Result -->
+                <div class="sim-model-card best-card" id="sim-card-rf">
+                  <div class="sim-model-top">
+                    <div class="sim-model-badge best-badge"><i class="fa-solid fa-crown"></i> Selected Best Model</div>
+                    <span class="sim-model-title">Random Forest Regression</span>
+                  </div>
+                  <div class="sim-val-row">
+                    <span class="sim-aqi-num" id="sim-rf-aqi">--</span>
+                    <span class="sim-cat-badge" id="sim-rf-cat">--</span>
+                  </div>
+                  <div class="sim-model-footer">
+                    <span>Ensemble: 25 Trees</span>
+                    <span>R² Score: <strong>0.9400</strong></span>
+                    <span>MAE: <strong>10.64</strong></span>
+                  </div>
+                </div>
+
+                <!-- Decision Tree Result -->
+                <div class="sim-model-card" id="sim-card-dt">
+                  <div class="sim-model-top">
+                    <div class="sim-model-badge"><i class="fa-solid fa-sitemap"></i> Tree Architecture</div>
+                    <span class="sim-model-title">Decision Tree Regression</span>
+                  </div>
+                  <div class="sim-val-row">
+                    <span class="sim-aqi-num" id="sim-dt-aqi">--</span>
+                    <span class="sim-cat-badge" id="sim-dt-cat">--</span>
+                  </div>
+                  <div class="sim-model-footer">
+                    <span>Max Depth: 8 Levels</span>
+                    <span>R² Score: <strong>0.9270</strong></span>
+                    <span>MAE: <strong>11.71</strong></span>
+                  </div>
+                </div>
+
+                <!-- Linear Regression Result -->
+                <div class="sim-model-card" id="sim-card-lr">
+                  <div class="sim-model-top">
+                    <div class="sim-model-badge baseline-badge"><i class="fa-solid fa-chart-line"></i> Linear Baseline</div>
+                    <span class="sim-model-title">Linear Regression</span>
+                  </div>
+                  <div class="sim-val-row">
+                    <span class="sim-aqi-num" id="sim-lr-aqi">--</span>
+                    <span class="sim-cat-badge" id="sim-lr-cat">--</span>
+                  </div>
+                  <div class="sim-model-footer">
+                    <span>6 Coefficients + Intercept</span>
+                    <span>R² Score: <strong>0.3130</strong></span>
+                    <span>MAE: <strong>37.27</strong></span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Physical Insight Summary -->
+              <div class="physical-insight-box glass-card" id="sim-physical-insight">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div id="sim-insight-text">
+                  Adjust features to observe physical atmospheric trends. Low wind speeds and winter months trigger non-linear pollutant build-ups that tree models capture accurately compared to linear baselines.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANALYTICS SECTION -->
+      <section class="analytics-section" id="analytics">
+        <div class="section-header-center">
+          <div class="hero-badge"><i class="fa-solid fa-chart-pie"></i> Data Visualizations</div>
+          <h2 class="section-title">Machine Learning & Meteorological Analytics</h2>
+          <p class="section-subtitle">
+            Interactive visual charts analyzing temporal trends, feature correlations, and regression residuals.
+          </p>
+        </div>
+
+        <div class="charts-grid">
+          
+          <!-- Chart 1: 24-Hour Diurnal AQI Trend -->
+          <div class="chart-card glass-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <i class="fa-solid fa-clock-rotate-left chart-icon"></i>
+                <div>
+                  <h3 class="chart-title">24-Hour Diurnal AQI Trend & Forecast</h3>
+                  <p class="chart-subtitle">Hourly trajectory comparing ground observations with ML regression output</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="chart-hourly"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Temperature vs AQI -->
+          <div class="chart-card glass-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <i class="fa-solid fa-temperature-high chart-icon"></i>
+                <div>
+                  <h3 class="chart-title">Temperature vs AQI Relationship</h3>
+                  <p class="chart-subtitle">Regression curve showing cold winter inversions and summer ozone spikes</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="chart-temp-aqi"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Humidity vs AQI -->
+          <div class="chart-card glass-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <i class="fa-solid fa-water chart-icon"></i>
+                <div>
+                  <h3 class="chart-title">Humidity vs AQI Scatter Distribution</h3>
+                  <p class="chart-subtitle">Aerosol hygroscopic growth patterns at elevated relative humidity</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="chart-hum-aqi"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 4: Actual vs Predicted Residuals -->
+          <div class="chart-card glass-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <i class="fa-solid fa-bullseye chart-icon"></i>
+                <div>
+                  <h3 class="chart-title">Actual vs Predicted AQI (Test Split)</h3>
+                  <p class="chart-subtitle">Model fidelity evaluation on 2,000 independent test samples (R² = 0.940)</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="chart-residuals"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MODEL BENCHMARK & EVALUATION SECTION -->
+      <section class="models-section" id="models">
+        <div class="section-header-center">
+          <div class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> Rigorous Machine Learning Evaluation</div>
+          <h2 class="section-title">Model Performance Benchmark & Metrics</h2>
+          <p class="section-subtitle">
+            Authentic, un-fabricated evaluation metrics computed on an 80/20 train/test split across 10,000 environmental records.
+          </p>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="metrics-cards-grid">
+          
+          <div class="metric-highlight-card glass-card">
+            <div class="metric-icon"><i class="fa-solid fa-database"></i></div>
+            <div class="metric-data">
+              <span class="metric-label">Dataset Records</span>
+              <span class="metric-value" id="val-total-records">10,000</span>
+              <span class="metric-sub">8,000 Train / 2,000 Test</span>
+            </div>
+          </div>
+
+          <div class="metric-highlight-card glass-card best-metric-card">
+            <div class="metric-icon"><i class="fa-solid fa-trophy"></i></div>
+            <div class="metric-data">
+              <span class="metric-label">Best Model R² Score</span>
+              <span class="metric-value text-emerald" id="val-best-r2">0.9400</span>
+              <span class="metric-sub">Random Forest (94.0% Variance Explained)</span>
+            </div>
+          </div>
+
+          <div class="metric-highlight-card glass-card">
+            <div class="metric-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+            <div class="metric-data">
+              <span class="metric-label">Mean Absolute Error (MAE)</span>
+              <span class="metric-value text-cyan" id="val-best-mae">10.64</span>
+              <span class="metric-sub">Average Prediction Error in AQI units</span>
+            </div>
+          </div>
+
+          <div class="metric-highlight-card glass-card">
+            <div class="metric-icon"><i class="fa-solid fa-chart-simple"></i></div>
+            <div class="metric-data">
+              <span class="metric-label">Root Mean Squared Error</span>
+              <span class="metric-value text-amber" id="val-best-rmse">13.40</span>
+              <span class="metric-sub">Penalizes Extreme Outliers</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Comparison Table Card -->
+        <div class="comparison-table-card glass-card">
+          <div class="table-card-header">
+            <h3><i class="fa-solid fa-table-list"></i> Algorithm Benchmark Matrix</h3>
+            <span class="badge badge-best"><i class="fa-solid fa-check-double"></i> Random Forest Auto-Selected</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="benchmark-table">
+              <thead>
+                <tr>
+                  <th>Model Algorithm</th>
+                  <th>Architecture Type</th>
+                  <th>R² Score (Variance)</th>
+                  <th>MAE (Avg Error)</th>
+                  <th>RMSE (Root MSE)</th>
+                  <th>Training Size</th>
+                  <th>Hyperparameters</th>
+                  <th>Selection Status</th>
+                </tr>
+              </thead>
+              <tbody id="benchmark-table-body">
+                <!-- Populated dynamically from actual model evaluation JSON -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Feature Importance & Coefficients Grid -->
+        <div class="feature-importance-grid">
+          
+          <!-- Feature Importance Chart -->
+          <div class="glass-card feature-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <i class="fa-solid fa-ranking-star card-icon"></i>
+                <h3 class="card-title">Random Forest Feature Importance Weights</h3>
+              </div>
+            </div>
+            <div class="feature-bars-list" id="feature-bars-container">
+              <!-- Dynamically populated feature importances -->
+            </div>
+          </div>
+
+          <!-- Linear Model Mathematical Formula -->
+          <div class="glass-card formula-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <i class="fa-solid fa-square-root-variable card-icon"></i>
+                <h3 class="card-title">Linear Regression Baseline Equation</h3>
+              </div>
+            </div>
+            <div class="math-box">
+              <div class="math-eq">
+                <code>AQI = β₀ + β₁(Temp) + β₂(Humidity) + β₃(Hour) + β₄(Month) + β₅(Wind) + β₆(Pressure)</code>
+              </div>
+              <div class="coef-pills-list" id="coef-pills-container">
+                <!-- Dynamically populated coefficients -->
+              </div>
+              <p class="math-explanation">
+                <strong>ML Insight:</strong> While Linear Regression provides an interpretable baseline, it struggles with non-linear environmental phenomena (such as threshold-based thermal inversions and exponential wind clearing), resulting in an R² of 0.313 compared to 0.940 for Random Forest.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VISUAL ML PIPELINE SECTION -->
+      <section class="pipeline-section" id="pipeline">
+        <div class="section-header-center">
+          <div class="hero-badge"><i class="fa-solid fa-diagram-project"></i> System Architecture</div>
+          <h2 class="section-title">How AeroSense Works: End-to-End ML Pipeline</h2>
+          <p class="section-subtitle">
+            From raw satellite & meteorological data collection to real-time ensemble inference and health advisory generation.
+          </p>
+        </div>
+
+        <div class="pipeline-flow-container glass-card">
+          <div class="pipeline-steps">
+            
+            <!-- Step 1 -->
+            <div class="pipeline-step">
+              <div class="step-badge">01</div>
+              <div class="step-icon-wrap"><i class="fa-solid fa-cloud"></i></div>
+              <h4 class="step-title">Environmental Data Ingestion</h4>
+              <p class="step-desc">Real-time retrieval of temperature, relative humidity, wind velocity, and barometric pressure via Open-Meteo & Ground Station APIs.</p>
+              <span class="step-tag">Raw Ingestion</span>
+            </div>
+
+            <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <!-- Step 2 -->
+            <div class="pipeline-step">
+              <div class="step-badge">02</div>
+              <div class="step-icon-wrap"><i class="fa-solid fa-filter"></i></div>
+              <h4 class="step-title">Data Preprocessing</h4>
+              <p class="step-desc">Handling missing values, outlier detection, geographic coordinate normalization, and time-zone alignment.</p>
+              <span class="step-tag">Data Cleaning</span>
+            </div>
+
+            <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <!-- Step 3 -->
+            <div class="pipeline-step">
+              <div class="step-badge">03</div>
+              <div class="step-icon-wrap"><i class="fa-solid fa-gears"></i></div>
+              <h4 class="step-title">Feature Engineering</h4>
+              <p class="step-desc">Extracting diurnal traffic cycles, seasonal winter thermal inversion vectors, and atmospheric stagnation coefficients.</p>
+              <span class="step-tag">Domain Features</span>
+            </div>
+
+            <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <!-- Step 4 -->
+            <div class="pipeline-step highlight-step">
+              <div class="step-badge">04</div>
+              <div class="step-icon-wrap"><i class="fa-solid fa-brain"></i></div>
+              <h4 class="step-title">ML Model Inference</h4>
+              <p class="step-desc">Executing Random Forest Regression ensemble (25 trees) with Decision Tree and Linear Regression cross-validation.</p>
+              <span class="step-tag">Ensemble ML</span>
+            </div>
+
+            <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <!-- Step 5 -->
+            <div class="pipeline-step">
+              <div class="step-badge">05</div>
+              <div class="step-icon-wrap"><i class="fa-solid fa-shield-heart"></i></div>
+              <h4 class="step-title">AQI Index & Health Warning</h4>
+              <p class="step-desc">Classifying into standard AQI tiers (Good to Severe), generating medical advisories, and charting 24h forecasts.</p>
+              <span class="step-tag">Actionable Output</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT & EXHIBITION SECTION -->
+      <section class="about-section" id="about">
+        <div class="section-header-center">
+          <div class="hero-badge"><i class="fa-solid fa-graduation-cap"></i> Academic Exhibition Showcase</div>
+          <h2 class="section-title">About AeroSense AI</h2>
+          <p class="section-subtitle">
+            An individual Machine Learning project created for the College Machine Learning Exhibition.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          
+          <div class="glass-card about-card">
+            <h3><i class="fa-solid fa-bullseye text-cyan"></i> Project Objective</h3>
+            <p>
+              Urban air pollution is a critical public health threat causing millions of preventable respiratory and cardiovascular cases worldwide. Traditional physical sensor monitoring stations require expensive hardware ($10,000+) and suffer from maintenance delays.
+            </p>
+            <p>
+              <strong>AeroSense AI</strong> demonstrates how supervised Machine Learning regression algorithms can accurately estimate Air Quality Index (AQI) using readily available, cost-effective meteorological features (temperature, relative humidity, time of day, season, wind speed, pressure).
+            </p>
+          </div>
+
+          <div class="glass-card about-card">
+            <h3><i class="fa-solid fa-flask text-emerald"></i> Scientific Methodology</h3>
+            <p>
+              Atmospheric pollutant dispersion is governed by fluid dynamics and boundary layer thermodynamics. Cold winter temperatures create <em>thermal inversions</em> where a layer of warm air traps cooler polluted air near the ground.
+            </p>
+            <p>
+              Our trained <strong>Random Forest Regressor</strong> captures these multi-dimensional interactions with an R² score of <strong>0.940</strong>, significantly outperforming traditional linear models which assume linear proportionality.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Official Disclaimer Alert -->
+        <div class="disclaimer-banner glass-card">
+          <div class="disclaimer-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div class="disclaimer-text">
+            <strong>Educational & Research Disclaimer:</strong>
+            Predictions and estimated concentrations generated by AeroSense AI are machine-learning statistical estimates intended for educational, demonstration, and research purposes and should not replace official government air-quality monitoring stations or medical directives.
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer glass-card">
+      <div class="footer-left">
+        <div class="footer-brand">AeroSense <span>AI</span></div>
+        <p class="footer-copy">© 2026 AeroSense AI. Individual Machine Learning Exhibition Project.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-tags">
+          <span class="footer-tag"><i class="fa-brands fa-python"></i> Scikit-Learn</span>
+          <span class="footer-tag"><i class="fa-brands fa-node-js"></i> Node.js & Express</span>
+          <span class="footer-tag"><i class="fa-solid fa-chart-line"></i> Chart.js</span>
+          <span class="footer-tag"><i class="fa-solid fa-cloud"></i> Open-Meteo API</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/particles.js"></script>
+  <script src="js/gauge.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

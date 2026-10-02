@@ -1,0 +1,39 @@
+{
+  "model_name": "Linear Regression",
+  "features": [
+    "temperature",
+    "humidity",
+    "hour",
+    "month",
+    "wind_speed",
+    "pressure"
+  ],
+  "coefficients": {
+    "temperature": 2.7453,
+    "humidity": 1.0409,
+    "hour": -0.5165,
+    "month": -3.6786,
+    "wind_speed": -2.5744,
+    "pressure": 0.2875
+  },
+  "intercept": -223.7642,
+  "metrics": {
+    "model_name": "Linear Regression",
+    "type": "Linear Baseline",
+    "mae": 37.27,
+    "mse": 2056.41,
+    "rmse": 45.35,
+    "r2_score": 0.313,
+    "training_samples": 8000,
+    "test_samples": 2000,
+    "coefficients": {
+      "temperature": 2.7453,
+      "humidity": 1.0409,
+      "hour": -0.5165,
+      "month": -3.6786,
+      "wind_speed": -2.5744,
+      "pressure": 0.2875
+    },
+    "intercept": -223.7642
+  }
+}

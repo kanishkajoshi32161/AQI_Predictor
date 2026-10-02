@@ -1,0 +1,111 @@
+{
+  "statistics": {
+    "temperature": {
+      "min": -5.0,
+      "max": 48.0,
+      "mean": 22.13,
+      "std": 10.28
+    },
+    "humidity": {
+      "min": 15.0,
+      "max": 98.0,
+      "mean": 60.56,
+      "std": 12.83
+    },
+    "hour": {
+      "min": 0.0,
+      "max": 23.0,
+      "mean": 11.68,
+      "std": 6.91
+    },
+    "month": {
+      "min": 1.0,
+      "max": 12.0,
+      "mean": 6.5,
+      "std": 3.46
+    },
+    "wind_speed": {
+      "min": 1.0,
+      "max": 37.9,
+      "mean": 9.87,
+      "std": 5.14
+    },
+    "pressure": {
+      "min": 1000.6,
+      "max": 1033.0,
+      "mean": 1016.44,
+      "std": 5.12
+    },
+    "aqi": {
+      "min": 22.7,
+      "max": 293.5,
+      "mean": 137.04,
+      "std": 53.84
+    }
+  },
+  "correlation_matrix": {
+    "temperature": {
+      "temperature": 1.0,
+      "humidity": -0.2696,
+      "hour": 0.1755,
+      "month": 0.1604,
+      "wind_speed": 0.0114,
+      "pressure": -0.811,
+      "aqi": 0.3887
+    },
+    "humidity": {
+      "temperature": -0.2696,
+      "humidity": 1.0,
+      "hour": -0.163,
+      "month": 0.3193,
+      "wind_speed": -0.006,
+      "pressure": 0.2174,
+      "aqi": 0.0453
+    },
+    "hour": {
+      "temperature": 0.1755,
+      "humidity": -0.163,
+      "hour": 1.0,
+      "month": -0.0063,
+      "wind_speed": -0.0214,
+      "pressure": -0.1349,
+      "aqi": -0.0076
+    },
+    "month": {
+      "temperature": 0.1604,
+      "humidity": 0.3193,
+      "hour": -0.0063,
+      "month": 1.0,
+      "wind_speed": 0.0006,
+      "pressure": -0.1278,
+      "aqi": -0.0769
+    },
+    "wind_speed": {
+      "temperature": 0.0114,
+      "humidity": -0.006,
+      "hour": -0.0214,
+      "month": 0.0006,
+      "wind_speed": 1.0,
+      "pressure": -0.0109,
+      "aqi": -0.2469
+    },
+    "pressure": {
+      "temperature": -0.811,
+      "humidity": 0.2174,
+      "hour": -0.1349,
+      "month": -0.1278,
+      "wind_speed": -0.0109,
+      "pressure": 1.0,
+      "aqi": -0.3067
+    },
+    "aqi": {
+      "temperature": 0.3887,
+      "humidity": 0.0453,
+      "hour": -0.0076,
+      "month": -0.0769,
+      "wind_speed": -0.2469,
+      "pressure": -0.3067,
+      "aqi": 1.0
+    }
+  }
+}

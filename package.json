@@ -1,0 +1,18 @@
+{
+  "name": "aerosense-ai",
+  "version": "1.0.0",
+  "description": "AeroSense AI - Smart Air Quality Predictor with Machine Learning Engine",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "train": "node backend/train.js",
+    "train:py": "uv run python ml/train_models.py"
+  },
+  "keywords": ["aqi", "machine-learning", "weather", "prediction", "random-forest", "decision-tree", "linear-regression"],
+  "author": "AeroSense AI Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5"
+  }
+}

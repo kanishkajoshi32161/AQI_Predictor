@@ -1,0 +1,1985 @@
+{
+  "model_name": "Decision Tree Regression",
+  "features": [
+    "temperature",
+    "humidity",
+    "hour",
+    "month",
+    "wind_speed",
+    "pressure"
+  ],
+  "tree": {
+    "type": "split",
+    "feature": "month",
+    "threshold": 2.5,
+    "left": {
+      "type": "split",
+      "feature": "wind_speed",
+      "threshold": 7.75,
+      "left": {
+        "type": "split",
+        "feature": "hour",
+        "threshold": 17.5,
+        "left": {
+          "type": "split",
+          "feature": "hour",
+          "threshold": 10.5,
+          "left": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 5.05,
+            "left": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 2.05,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 64.9,
+                "left": {
+                  "type": "leaf",
+                  "value": 253.13,
+                  "samples": 6
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 266.43,
+                  "samples": 6
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 2.35,
+                "left": {
+                  "type": "leaf",
+                  "value": 244.73,
+                  "samples": 9
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 71.35,
+                  "left": {
+                    "type": "leaf",
+                    "value": 231.58,
+                    "samples": 88
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 243.3,
+                    "samples": 11
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "humidity",
+              "threshold": 75.95,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 5.95,
+                "left": {
+                  "type": "split",
+                  "feature": "month",
+                  "threshold": 1.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 229.97,
+                    "samples": 20
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 217.34,
+                    "samples": 19
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1020.55,
+                  "left": {
+                    "type": "leaf",
+                    "value": 215.58,
+                    "samples": 69
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 195.7,
+                    "samples": 2
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 0.5,
+                "left": {
+                  "type": "leaf",
+                  "value": 259.7,
+                  "samples": 1
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 234.43,
+                  "samples": 9
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 3.95,
+            "left": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 2.25,
+              "left": {
+                "type": "leaf",
+                "value": 240.82,
+                "samples": 4
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 15.5,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 36.8,
+                  "left": {
+                    "type": "leaf",
+                    "value": 216.53,
+                    "samples": 17
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 206.12,
+                    "samples": 5
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 3.35,
+                  "left": {
+                    "type": "leaf",
+                    "value": 219.03,
+                    "samples": 6
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 236.34,
+                    "samples": 5
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 5.85,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 34.7,
+                "left": {
+                  "type": "leaf",
+                  "value": 194.84,
+                  "samples": 8
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 11.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 213.03,
+                    "samples": 11
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 205.92,
+                    "samples": 49
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "pressure",
+                "threshold": 1010.95,
+                "left": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1004.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 223.8,
+                    "samples": 1
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 189.29,
+                    "samples": 24
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 62.55,
+                  "left": {
+                    "type": "leaf",
+                    "value": 202.02,
+                    "samples": 25
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 185.05,
+                    "samples": 4
+                  }
+                }
+              }
+            }
+          }
+        },
+        "right": {
+          "type": "split",
+          "feature": "wind_speed",
+          "threshold": 5.85,
+          "left": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 3.45,
+            "left": {
+              "type": "split",
+              "feature": "pressure",
+              "threshold": 1012.85,
+              "left": {
+                "type": "split",
+                "feature": "temperature",
+                "threshold": 34.5,
+                "left": {
+                  "type": "leaf",
+                  "value": 245.56,
+                  "samples": 8
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 255.18,
+                  "samples": 5
+                }
+              },
+              "right": {
+                "type": "leaf",
+                "value": 262.8,
+                "samples": 7
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "humidity",
+              "threshold": 70.65,
+              "left": {
+                "type": "split",
+                "feature": "temperature",
+                "threshold": 33.95,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 59.35,
+                  "left": {
+                    "type": "leaf",
+                    "value": 245.52,
+                    "samples": 30
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 234.83,
+                    "samples": 10
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 232.58,
+                  "samples": 9
+                }
+              },
+              "right": {
+                "type": "leaf",
+                "value": 257.92,
+                "samples": 5
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "hour",
+            "threshold": 18.5,
+            "left": {
+              "type": "leaf",
+              "value": 212.12,
+              "samples": 6
+            },
+            "right": {
+              "type": "split",
+              "feature": "humidity",
+              "threshold": 71.25,
+              "left": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 22.5,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 21.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 229.44,
+                    "samples": 29
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 246.8,
+                    "samples": 10
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 221.16,
+                  "samples": 7
+                }
+              },
+              "right": {
+                "type": "leaf",
+                "value": 252.2,
+                "samples": 4
+              }
+            }
+          }
+        }
+      },
+      "right": {
+        "type": "split",
+        "feature": "hour",
+        "threshold": 17.5,
+        "left": {
+          "type": "split",
+          "feature": "hour",
+          "threshold": 10.5,
+          "left": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 12.85,
+            "left": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 10.85,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 83.95,
+                "left": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1012.9,
+                  "left": {
+                    "type": "leaf",
+                    "value": 217.25,
+                    "samples": 37
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 211.2,
+                    "samples": 76
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 238.45,
+                  "samples": 2
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "temperature",
+                "threshold": 14.95,
+                "left": {
+                  "type": "leaf",
+                  "value": 227.25,
+                  "samples": 2
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "month",
+                  "threshold": 1.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 210.14,
+                    "samples": 37
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 203.51,
+                    "samples": 31
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 0.5,
+              "left": {
+                "type": "split",
+                "feature": "month",
+                "threshold": 1.5,
+                "left": {
+                  "type": "leaf",
+                  "value": 194.74,
+                  "samples": 9
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 173.31,
+                  "samples": 7
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 15.05,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 14.75,
+                  "left": {
+                    "type": "leaf",
+                    "value": 201.38,
+                    "samples": 43
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 210.73,
+                    "samples": 6
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 58.1,
+                  "left": {
+                    "type": "leaf",
+                    "value": 190.46,
+                    "samples": 38
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 198.75,
+                    "samples": 54
+                  }
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 13.15,
+            "left": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 10.95,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 27.55,
+                "left": {
+                  "type": "leaf",
+                  "value": 206.15,
+                  "samples": 2
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1018.35,
+                  "left": {
+                    "type": "leaf",
+                    "value": 186.16,
+                    "samples": 100
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 199.2,
+                    "samples": 3
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "pressure",
+                "threshold": 1011.95,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 31.65,
+                  "left": {
+                    "type": "leaf",
+                    "value": 162.2,
+                    "samples": 1
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 186.57,
+                    "samples": 29
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 35.05,
+                  "left": {
+                    "type": "leaf",
+                    "value": 179.43,
+                    "samples": 14
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 166.5,
+                    "samples": 8
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "month",
+              "threshold": 1.5,
+              "left": {
+                "type": "split",
+                "feature": "pressure",
+                "threshold": 1003.9,
+                "left": {
+                  "type": "leaf",
+                  "value": 212.8,
+                  "samples": 1
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1011.3,
+                  "left": {
+                    "type": "leaf",
+                    "value": 172.69,
+                    "samples": 27
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 181.68,
+                    "samples": 22
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 28.15,
+                "left": {
+                  "type": "leaf",
+                  "value": 192.25,
+                  "samples": 2
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 12.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 172.78,
+                    "samples": 15
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 165.04,
+                    "samples": 36
+                  }
+                }
+              }
+            }
+          }
+        },
+        "right": {
+          "type": "split",
+          "feature": "wind_speed",
+          "threshold": 13.25,
+          "left": {
+            "type": "split",
+            "feature": "hour",
+            "threshold": 19.5,
+            "left": {
+              "type": "split",
+              "feature": "month",
+              "threshold": 1.5,
+              "left": {
+                "type": "split",
+                "feature": "pressure",
+                "threshold": 1014.75,
+                "left": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1007.6,
+                  "left": {
+                    "type": "leaf",
+                    "value": 210.23,
+                    "samples": 3
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 222.25,
+                    "samples": 15
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 200.5,
+                  "samples": 1
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 18.5,
+                "left": {
+                  "type": "leaf",
+                  "value": 202.64,
+                  "samples": 7
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 32.85,
+                  "left": {
+                    "type": "leaf",
+                    "value": 211.4,
+                    "samples": 7
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 226.3,
+                    "samples": 3
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 8.45,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 69.7,
+                "left": {
+                  "type": "leaf",
+                  "value": 240.62,
+                  "samples": 9
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 209.7,
+                  "samples": 1
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 20.5,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 46.65,
+                  "left": {
+                    "type": "leaf",
+                    "value": 245.07,
+                    "samples": 4
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 225.34,
+                    "samples": 12
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 81.35,
+                  "left": {
+                    "type": "leaf",
+                    "value": 219.1,
+                    "samples": 46
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 245.0,
+                    "samples": 1
+                  }
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 20.95,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 18.5,
+              "left": {
+                "type": "leaf",
+                "value": 198.19,
+                "samples": 9
+              },
+              "right": {
+                "type": "split",
+                "feature": "temperature",
+                "threshold": 31.05,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 21.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 204.76,
+                    "samples": 19
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 216.61,
+                    "samples": 19
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 22.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 220.63,
+                    "samples": 25
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 202.67,
+                    "samples": 3
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "humidity",
+              "threshold": 51.3,
+              "left": {
+                "type": "leaf",
+                "value": 183.87,
+                "samples": 3
+              },
+              "right": {
+                "type": "leaf",
+                "value": 199.44,
+                "samples": 7
+              }
+            }
+          }
+        }
+      }
+    },
+    "right": {
+      "type": "split",
+      "feature": "month",
+      "threshold": 10.5,
+      "left": {
+        "type": "split",
+        "feature": "temperature",
+        "threshold": 11.35,
+        "left": {
+          "type": "split",
+          "feature": "wind_speed",
+          "threshold": 6.25,
+          "left": {
+            "type": "split",
+            "feature": "wind_speed",
+            "threshold": 3.55,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 19.5,
+              "left": {
+                "type": "split",
+                "feature": "temperature",
+                "threshold": 8.3,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 1.95,
+                  "left": {
+                    "type": "leaf",
+                    "value": 177.51,
+                    "samples": 10
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 160.03,
+                    "samples": 29
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 59.1,
+                  "left": {
+                    "type": "leaf",
+                    "value": 139.45,
+                    "samples": 15
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 151.86,
+                    "samples": 13
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 84.75,
+                "left": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1021.25,
+                  "left": {
+                    "type": "leaf",
+                    "value": 161.59,
+                    "samples": 7
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 178.96,
+                    "samples": 19
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 222.15,
+                  "samples": 2
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "temperature",
+              "threshold": 8.65,
+              "left": {
+                "type": "split",
+                "feature": "temperature",
+                "threshold": 2.85,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": -3.15,
+                  "left": {
+                    "type": "leaf",
+                    "value": 205.5,
+                    "samples": 1
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 162.46,
+                    "samples": 27
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 18.0,
+                  "left": {
+                    "type": "leaf",
+                    "value": 141.79,
+                    "samples": 90
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 156.86,
+                    "samples": 46
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 18.0,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 10.0,
+                  "left": {
+                    "type": "leaf",
+                    "value": 130.35,
+                    "samples": 49
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 105.04,
+                    "samples": 7
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 42.15,
+                  "left": {
+                    "type": "leaf",
+                    "value": 173.4,
+                    "samples": 1
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 142.87,
+                    "samples": 22
+                  }
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "temperature",
+            "threshold": 6.65,
+            "left": {
+              "type": "split",
+              "feature": "temperature",
+              "threshold": 2.35,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 11.85,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 74.6,
+                  "left": {
+                    "type": "leaf",
+                    "value": 142.42,
+                    "samples": 23
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 156.89,
+                    "samples": 29
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 0.25,
+                  "left": {
+                    "type": "leaf",
+                    "value": 147.94,
+                    "samples": 15
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 131.02,
+                    "samples": 30
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 11.75,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 18.0,
+                  "left": {
+                    "type": "leaf",
+                    "value": 130.37,
+                    "samples": 129
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 144.17,
+                    "samples": 53
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 19.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 115.7,
+                    "samples": 87
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 132.59,
+                    "samples": 25
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 12.05,
+              "left": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 18.5,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 10.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 119.81,
+                    "samples": 231
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 97.31,
+                    "samples": 42
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 7.65,
+                  "left": {
+                    "type": "leaf",
+                    "value": 140.07,
+                    "samples": 27
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 127.11,
+                    "samples": 68
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 18.5,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 9.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 103.82,
+                    "samples": 139
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 83.45,
+                    "samples": 28
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 86.85,
+                  "left": {
+                    "type": "leaf",
+                    "value": 118.27,
+                    "samples": 58
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 168.9,
+                    "samples": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "right": {
+          "type": "split",
+          "feature": "wind_speed",
+          "threshold": 7.45,
+          "left": {
+            "type": "split",
+            "feature": "hour",
+            "threshold": 18.5,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 10.5,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 4.45,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 3.15,
+                  "left": {
+                    "type": "leaf",
+                    "value": 136.28,
+                    "samples": 93
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 127.08,
+                    "samples": 107
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 73.75,
+                  "left": {
+                    "type": "leaf",
+                    "value": 112.58,
+                    "samples": 275
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 123.49,
+                    "samples": 78
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 4.05,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 17.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 107.09,
+                    "samples": 169
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 126.17,
+                    "samples": 25
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 16.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 88.42,
+                    "samples": 352
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 104.0,
+                    "samples": 121
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 4.25,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 2.2,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 17.4,
+                  "left": {
+                    "type": "leaf",
+                    "value": 149.95,
+                    "samples": 4
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 163.97,
+                    "samples": 7
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 80.05,
+                  "left": {
+                    "type": "leaf",
+                    "value": 143.01,
+                    "samples": 103
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 160.73,
+                    "samples": 7
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 68.45,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 5.75,
+                  "left": {
+                    "type": "leaf",
+                    "value": 132.25,
+                    "samples": 60
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 122.93,
+                    "samples": 83
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 12.1,
+                  "left": {
+                    "type": "leaf",
+                    "value": 178.9,
+                    "samples": 1
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 137.02,
+                    "samples": 63
+                  }
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "hour",
+            "threshold": 18.5,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 10.5,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 11.05,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 80.4,
+                  "left": {
+                    "type": "leaf",
+                    "value": 101.26,
+                    "samples": 328
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 118.52,
+                    "samples": 38
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 16.25,
+                  "left": {
+                    "type": "leaf",
+                    "value": 93.7,
+                    "samples": 362
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 85.97,
+                    "samples": 192
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 16.5,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 12.35,
+                  "left": {
+                    "type": "leaf",
+                    "value": 74.17,
+                    "samples": 443
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 62.03,
+                    "samples": 395
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 17.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 78.17,
+                    "samples": 132
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 90.26,
+                    "samples": 141
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 12.35,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 72.4,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 22.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 113.09,
+                    "samples": 163
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 101.15,
+                    "samples": 34
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 13.55,
+                  "left": {
+                    "type": "leaf",
+                    "value": 131.31,
+                    "samples": 16
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 119.41,
+                    "samples": 50
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 83.8,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 16.2,
+                  "left": {
+                    "type": "leaf",
+                    "value": 104.76,
+                    "samples": 85
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 99.06,
+                    "samples": 111
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 130.12,
+                  "samples": 5
+                }
+              }
+            }
+          }
+        }
+      },
+      "right": {
+        "type": "split",
+        "feature": "month",
+        "threshold": 11.5,
+        "left": {
+          "type": "split",
+          "feature": "wind_speed",
+          "threshold": 7.15,
+          "left": {
+            "type": "split",
+            "feature": "humidity",
+            "threshold": 71.75,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 19.5,
+              "left": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 9.5,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 4.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 194.18,
+                    "samples": 16
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 174.6,
+                    "samples": 28
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 2.75,
+                  "left": {
+                    "type": "leaf",
+                    "value": 181.02,
+                    "samples": 12
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 162.88,
+                    "samples": 62
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "pressure",
+                "threshold": 1010.05,
+                "left": {
+                  "type": "leaf",
+                  "value": 205.06,
+                  "samples": 9
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 71.55,
+                  "left": {
+                    "type": "leaf",
+                    "value": 190.62,
+                    "samples": 20
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 168.0,
+                    "samples": 1
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 3.45,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 84.5,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 74.95,
+                  "left": {
+                    "type": "leaf",
+                    "value": 213.6,
+                    "samples": 7
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 197.72,
+                    "samples": 8
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 229.88,
+                  "samples": 4
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 74.6,
+                "left": {
+                  "type": "leaf",
+                  "value": 179.8,
+                  "samples": 9
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 33.85,
+                  "left": {
+                    "type": "leaf",
+                    "value": 199.37,
+                    "samples": 32
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 172.73,
+                    "samples": 4
+                  }
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "hour",
+            "threshold": 18.5,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 10.5,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 15.05,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 40.75,
+                  "left": {
+                    "type": "leaf",
+                    "value": 162.15,
+                    "samples": 153
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 138.18,
+                    "samples": 4
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 15.15,
+                  "left": {
+                    "type": "leaf",
+                    "value": 111.8,
+                    "samples": 1
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 150.27,
+                    "samples": 41
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 17.5,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 10.25,
+                  "left": {
+                    "type": "leaf",
+                    "value": 142.0,
+                    "samples": 29
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 126.31,
+                    "samples": 84
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 12.15,
+                  "left": {
+                    "type": "leaf",
+                    "value": 165.21,
+                    "samples": 12
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 141.19,
+                    "samples": 8
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "humidity",
+              "threshold": 88.45,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 11.05,
+                "left": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 48.4,
+                  "left": {
+                    "type": "leaf",
+                    "value": 162.35,
+                    "samples": 2
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 179.65,
+                    "samples": 26
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 22.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 167.33,
+                    "samples": 43
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 148.11,
+                    "samples": 7
+                  }
+                }
+              },
+              "right": {
+                "type": "leaf",
+                "value": 203.43,
+                "samples": 3
+              }
+            }
+          }
+        },
+        "right": {
+          "type": "split",
+          "feature": "wind_speed",
+          "threshold": 7.05,
+          "left": {
+            "type": "split",
+            "feature": "temperature",
+            "threshold": 35.7,
+            "left": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 4.85,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 59.35,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 3.85,
+                  "left": {
+                    "type": "leaf",
+                    "value": 244.87,
+                    "samples": 15
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 224.0,
+                    "samples": 4
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1011.45,
+                  "left": {
+                    "type": "leaf",
+                    "value": 243.38,
+                    "samples": 11
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 257.55,
+                    "samples": 34
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 18.5,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 10.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 235.77,
+                    "samples": 55
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 211.99,
+                    "samples": 8
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 6.45,
+                  "left": {
+                    "type": "leaf",
+                    "value": 254.94,
+                    "samples": 14
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 235.23,
+                    "samples": 3
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 18.5,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 3.9,
+                "left": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 9.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 256.07,
+                    "samples": 3
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 230.2,
+                    "samples": 19
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "hour",
+                  "threshold": 9.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 232.88,
+                    "samples": 5
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 213.03,
+                    "samples": 35
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "pressure",
+                "threshold": 1011.05,
+                "left": {
+                  "type": "leaf",
+                  "value": 235.67,
+                  "samples": 7
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 257.56,
+                  "samples": 5
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "split",
+            "feature": "hour",
+            "threshold": 18.5,
+            "left": {
+              "type": "split",
+              "feature": "hour",
+              "threshold": 10.5,
+              "left": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 12.65,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 8.65,
+                  "left": {
+                    "type": "leaf",
+                    "value": 225.41,
+                    "samples": 37
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 215.03,
+                    "samples": 70
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "humidity",
+                  "threshold": 71.95,
+                  "left": {
+                    "type": "leaf",
+                    "value": 201.45,
+                    "samples": 73
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 210.93,
+                    "samples": 19
+                  }
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "hour",
+                "threshold": 17.5,
+                "left": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 10.9,
+                  "left": {
+                    "type": "leaf",
+                    "value": 195.13,
+                    "samples": 74
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 182.66,
+                    "samples": 76
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "wind_speed",
+                  "threshold": 10.5,
+                  "left": {
+                    "type": "leaf",
+                    "value": 224.67,
+                    "samples": 8
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 203.2,
+                    "samples": 12
+                  }
+                }
+              }
+            },
+            "right": {
+              "type": "split",
+              "feature": "wind_speed",
+              "threshold": 13.95,
+              "left": {
+                "type": "split",
+                "feature": "humidity",
+                "threshold": 75.3,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 33.1,
+                  "left": {
+                    "type": "leaf",
+                    "value": 235.57,
+                    "samples": 27
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 226.95,
+                    "samples": 33
+                  }
+                },
+                "right": {
+                  "type": "leaf",
+                  "value": 252.51,
+                  "samples": 7
+                }
+              },
+              "right": {
+                "type": "split",
+                "feature": "wind_speed",
+                "threshold": 17.75,
+                "left": {
+                  "type": "split",
+                  "feature": "temperature",
+                  "threshold": 43.1,
+                  "left": {
+                    "type": "leaf",
+                    "value": 219.68,
+                    "samples": 16
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 192.2,
+                    "samples": 1
+                  }
+                },
+                "right": {
+                  "type": "split",
+                  "feature": "pressure",
+                  "threshold": 1010.55,
+                  "left": {
+                    "type": "leaf",
+                    "value": 218.5,
+                    "samples": 3
+                  },
+                  "right": {
+                    "type": "leaf",
+                    "value": 206.07,
+                    "samples": 10
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "metrics": {
+    "model_name": "Decision Tree Regression",
+    "type": "Non-linear Tree",
+    "mae": 11.71,
+    "mse": 218.47,
+    "rmse": 14.78,
+    "r2_score": 0.927,
+    "training_samples": 8000,
+    "test_samples": 2000,
+    "max_depth": 8,
+    "feature_importances": {
+      "temperature": 0.0514,
+      "humidity": 0.0048,
+      "hour": 0.073,
+      "month": 0.7903,
+      "wind_speed": 0.0798,
+      "pressure": 0.0008
+    }
+  }
+}

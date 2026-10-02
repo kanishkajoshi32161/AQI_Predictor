@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-09-06T21:41:25.030653",
+  "dataset_info": {
+    "total_records": 10000,
+    "train_records": 8000,
+    "test_records": 2000,
+    "features": [
+      "temperature",
+      "humidity",
+      "hour",
+      "month",
+      "wind_speed",
+      "pressure"
+    ],
+    "target": "aqi"
+  },
+  "best_model": "Random Forest Regression",
+  "models": {
+    "linear_regression": {
+      "model_name": "Linear Regression",
+      "type": "Linear Baseline",
+      "mae": 37.27,
+      "mse": 2056.41,
+      "rmse": 45.35,
+      "r2_score": 0.313,
+      "training_samples": 8000,
+      "test_samples": 2000,
+      "coefficients": {
+        "temperature": 2.7453,
+        "humidity": 1.0409,
+        "hour": -0.5165,
+        "month": -3.6786,
+        "wind_speed": -2.5744,
+        "pressure": 0.2875
+      },
+      "intercept": -223.7642
+    },
+    "decision_tree": {
+      "model_name": "Decision Tree Regression",
+      "type": "Non-linear Tree",
+      "mae": 11.71,
+      "mse": 218.47,
+      "rmse": 14.78,
+      "r2_score": 0.927,
+      "training_samples": 8000,
+      "test_samples": 2000,
+      "max_depth": 8,
+      "feature_importances": {
+        "temperature": 0.0514,
+        "humidity": 0.0048,
+        "hour": 0.073,
+        "month": 0.7903,
+        "wind_speed": 0.0798,
+        "pressure": 0.0008
+      }
+    },
+    "random_forest": {
+      "model_name": "Random Forest Regression",
+      "type": "Ensemble (Bagging)",
+      "mae": 10.64,
+      "mse": 179.65,
+      "rmse": 13.4,
+      "r2_score": 0.94,
+      "training_samples": 8000,
+      "test_samples": 2000,
+      "n_estimators": 25,
+      "max_depth": 10,
+      "feature_importances": {
+        "temperature": 0.0561,
+        "humidity": 0.0098,
+        "hour": 0.0724,
+        "month": 0.7736,
+        "wind_speed": 0.0845,
+        "pressure": 0.0037
+      }
+    }
+  }
+}
